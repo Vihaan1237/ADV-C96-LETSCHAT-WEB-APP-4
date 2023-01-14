@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>Welcome to the the legendry world!!</title>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div class="container">
+	<button id="logout" class="glyphicon glyphicon-log-out btn btn-danger" onclick="deleteuser()">Logout</button>
+	<center>
+		<h1 class="header">	
+			Nitro Chat	
+			<sup>
+				<img style="height: 100px; width: 180px;;" src="data:image/jpeg;base64,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">
+			</sup>
+		</h1>
+		<div style="text-align: left;margin-bottom: 70px;" id="output"> </div>
+	</center>
+</div>
+
+<center>
+	<div class="input_div_message_page">
+		<label>Send Your friend a message:</label>
+        <br>
+        <br>
+		<input style="width: 950px;" id="message" class="form-control" type="text" placeholder="Enter You Message Here">
+        <br>
+		<button id="send" onclick="send()" class="btn btn-warning"> >> Send Message << </button>
+	</div>
+</center>
+
+<script src="kwitter_page.js"></script>
+</body>
+</html>
